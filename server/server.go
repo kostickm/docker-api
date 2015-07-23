@@ -3,7 +3,7 @@ package server
 import (
 	"net/http"
 
-	"github.com/emicklei/go-resful"
+	"github.com/emicklei/go-restful"
 	"github.com/emicklei/go-restful/swagger"
 	"github.com/kostickm/docker-api/api"
 )

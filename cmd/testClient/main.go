@@ -33,7 +33,7 @@ func main() {
 	for scanner.Scan() {
 		switch strings.ToLower(strings.TrimSpace(scanner.Text())) {
 		case "list":
-			printReult(c.List(&api.ListContainersParams{}))
+			printResult(c.List(&api.ListContainersParams{}))
 		case "ping":
 			printResult(c.Ping())
 		case "version":
