@@ -51,3 +51,18 @@ func (b *baseClient) Version() (*api.Version, error) {
 
 	return out, nil
 }
+
+func (b *baseClient) Info() (*api.Info, error) {
+	r, err := b.client.Get(fmt.Sprintf("%s/info", b.baseURI))
+	if err != nil {
+		return nil, err
+	}
+	defer r.Body.Close()
+
+	var info *api.Info
+	if err := json.NewDecoder(r.Body).Decode(&info); err != nil {
+		return nil, err
+	}
+
+	return info, nil
+}

@@ -38,6 +38,11 @@ func (s *baseServer) installRoutes(ws *restful.WebService) {
 		Doc("Show the Docker server versions information").
 		Produces(restful.MIME_JSON).
 		Returns(200, "version information", api.Version{}))
+
+	ws.Route(ws.GET("info").To(s.Info).
+		Doc("Show the Docker server information").
+		Produces(restful.MIME_JSON).
+		Returns(200, "server details", api.Info{}))
 }
 
 func (s *baseServer) Ping(request *restful.Request, response *restful.Response) {
@@ -58,4 +63,14 @@ func (s *baseServer) Version(request *restful.Request, response *restful.Respons
 	}
 
 	response.WriteEntity(v)
+}
+
+func (s *baseServer) Info(request *restful.Request, response *restful.Response) {
+	i, err := s.impl.Info()
+	if err != nil {
+		response.WriteError(http.StatusInternalServerError, err)
+		return
+	}
+
+	response.WriteEntity(i)
 }

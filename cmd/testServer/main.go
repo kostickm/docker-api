@@ -33,6 +33,15 @@ func (*testServer) Version() (*api.Version, error) {
 	}, nil
 }
 
+func (*testServer) Info() (*api.Info, error) {
+	log.Info("testServer.Info()")
+	return &api.Info{
+		Container:    2,
+		Images:       23,
+		Driver:       "TestDriver",
+		DriverStatus: "OK",
+	}, nil
+}
 func main() {
 	srv := server.New(&testServer{}, "swagger-ui/dist/")
 	if err := http.ListenAndServe("127.0.0.1:8080", srv); err != nil {

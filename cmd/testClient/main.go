@@ -38,6 +38,8 @@ func main() {
 			printResult(c.Ping())
 		case "version":
 			printResult(c.Version())
+		case "info":
+			printResult(c.Info())
 		default:
 			fmt.Printf("Unknown command %q\n", scanner.Text())
 		}
