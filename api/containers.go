@@ -33,7 +33,7 @@ type Port struct {
 
 // Container holds data for an existing container.
 type Container struct {
-	ID         string `jston:"Id"`
+	ID         string `json:"Id"`
 	Names      []string
 	Image      string
 	Command    string

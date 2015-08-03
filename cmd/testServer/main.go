@@ -36,7 +36,7 @@ func (*testServer) Version() (*api.Version, error) {
 func (*testServer) Info() (*api.Info, error) {
 	log.Info("testServer.Info()")
 	return &api.Info{
-		Container:    2,
+		Containers:   2,
 		Images:       23,
 		Driver:       "TestDriver",
 		DriverStatus: "OK",

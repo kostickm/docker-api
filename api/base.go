@@ -26,6 +26,7 @@ type Info struct {
 	Images       int
 	Driver       string `json:"Driver"`
 	DriverStatus string
+	Info         string
 
 	// Add in more properties here, not sure which ones will need json
 }
