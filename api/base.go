@@ -5,6 +5,7 @@ type BaseService interface {
 	Ping() (string, error)
 	Version() (*Version, error)
 	Info() (*Info, error)
+	Images(*ListImageParams) ([]*Image, error)
 }
 
 // Version is all the version information (for Docker itself, Go, or the OS)
@@ -29,4 +30,21 @@ type Info struct {
 	Info         string
 
 	// Add in more properties here, not sure which ones will need json
+}
+
+type ListImageParams struct {
+	All     bool
+	Limit   int
+	Since   int
+	Before  int
+	Size    bool
+	Filters map[string][]string
+}
+
+type Image struct {
+	Repo        string
+	Tag         string
+	ID          string `json:"Id"`
+	Created     int
+	SizeVirtual int `json:",omitempty"`
 }

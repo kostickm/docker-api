@@ -42,6 +42,12 @@ func (*testServer) Info() (*api.Info, error) {
 		DriverStatus: "OK",
 	}, nil
 }
+
+func (*testServer) ImagesJSON(p *api.ListImageParams) ([]*api.Image, error) {
+	log.Infof("testServer.List(%v)", p)
+	return []*api.Container{}, nil
+}
+
 func main() {
 	srv := server.New(&testServer{}, "swagger-ui/dist/")
 	if err := http.ListenAndServe("127.0.0.1:8080", srv); err != nil {

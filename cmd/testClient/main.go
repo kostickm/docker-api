@@ -40,6 +40,8 @@ func main() {
 			printResult(c.Version())
 		case "info":
 			printResult(c.Info())
+		case "images":
+			printResult(c.ImagesJSON(&api.ListImageParams{}))
 		default:
 			fmt.Printf("Unknown command %q\n", scanner.Text())
 		}
