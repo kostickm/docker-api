@@ -13,6 +13,7 @@ import (
 func New(impl api.Service, swaggerFilePath string) http.Handler {
 	baseSrv := newBaseServer(impl)
 	containersSrv := newContainersServer(impl)
+	imagesSrv := newImagesServer(impl)
 
 	container := restful.NewContainer()
 	container.Add(baseSrv.WebService)

@@ -43,9 +43,9 @@ func (*testServer) Info() (*api.Info, error) {
 	}, nil
 }
 
-func (*testServer) ImagesJSON(p *api.ListImageParams) ([]*api.Image, error) {
+func (*testServer) List(p *api.ListImageParams) ([]*api.Image, error) {
 	log.Infof("testServer.List(%v)", p)
-	return []*api.Container{}, nil
+	return []*api.Image{}, nil
 }
 
 func main() {

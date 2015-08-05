@@ -43,11 +43,6 @@ func (s *baseServer) installRoutes(ws *restful.WebService) {
 		Doc("Show the Docker server information").
 		Produces(restful.MIME_JSON).
 		Returns(200, "server details", api.Info{}))
-
-	ws.Route(ws.GET("images").To(s.ImagesJSON).
-		Doc("List the Docker image information").
-		Produces(restful.MIME_JSON).
-		Returns(200, "image details", api.ImagesJSON{}))
 }
 
 func (s *baseServer) Ping(request *restful.Request, response *restful.Response) {
@@ -78,23 +73,4 @@ func (s *baseServer) Info(request *restful.Request, response *restful.Response) 
 	}
 
 	response.WriteEntity(i)
-}
-
-func (s *baseServer) ImagesJSON(request *restful.Request, response *restful.Response) {
-	params := &api.ListImageParams{}
-
-	if all, err := booleanValue(request.QueryParameter("all"), false); err == nil {
-		params.All = all
-	} else {
-		response.WriteError(http.StatusBadRequest, err)
-		return
-	}
-
-	imageList, err := s.impl.Image(params)
-	if err != nil {
-		response.WriteError(http.StatusInternalServerError, err)
-		return
-	}
-
-	response.WriteEntity(imageList)
 }

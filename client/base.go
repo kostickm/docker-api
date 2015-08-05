@@ -66,19 +66,3 @@ func (b *baseClient) Info() (*api.Info, error) {
 
 	return info, nil
 }
-
-func (b *baseClient) ImagesJSON(_ *api.ListImageParams) ([]*api.Image, error) {
-	// get images
-	r, err := b.client.Get(fmt.Sprintf("%s/images/json", b.baseURI))
-	if err != nil {
-		return nil, err
-	}
-	defer r.Body.Close()
-
-	var images []*api.Image
-	if err := json.NewDecoder(r.Body).Decode(&images); err != nil {
-		return nil, err
-	}
-
-	return images, nil
-}
